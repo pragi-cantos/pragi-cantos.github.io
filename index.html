@@ -7,21 +7,29 @@
         <link rel="stylesheet" href="./external-scripts/materialize.min.css">	
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>            
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
 
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
 
         <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCyBdwJeaD2Vm17T8BRXrumNoOk3Z8NucE",
-            authDomain: "invoice-generator-2ad43.firebaseapp.com",
-            databaseURL: "https://invoice-generator-2ad43.firebaseio.com",
-            projectId: "invoice-generator-2ad43",
-            storageBucket: "invoice-generator-2ad43.appspot.com",
-            messagingSenderId: "862076289309"
-        };
-        firebase.initializeApp(config);
+          // Your web app's Firebase configuration
+          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          var firebaseConfig = {
+            apiKey: "AIzaSyDfYWTi6kPaqAmG-4u3PV9vtxoawl6WW6g",
+            authDomain: "invoice-generator-cantos.firebaseapp.com",
+            projectId: "invoice-generator-cantos",
+            storageBucket: "invoice-generator-cantos.appspot.com",
+            messagingSenderId: "211822546512",
+            appId: "1:211822546512:web:7ef74074b7b07859218b55",
+            measurementId: "G-GF4P068VB1"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
         </script>
 
         <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
