@@ -86,7 +86,7 @@ function generateInvoice(doc, data) {
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(65, 160, 240);
 
-    doc.text(85, 50, 'BILL RECEIPT')
+    doc.text(85, 65, 'BILL RECEIPT')
     
     doc.setTextColor(0, 0, 0);
 
@@ -99,7 +99,7 @@ function generateInvoice(doc, data) {
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
 
-    var y_pos = 54;
+    var y_pos = 69;
 
     if (client_name) {
         y_pos += 5;
@@ -161,7 +161,7 @@ function generatePurchaseList(doc, data) {
     }
 
     doc.autoTable({
-        startY: 95,
+        startY: 120,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items

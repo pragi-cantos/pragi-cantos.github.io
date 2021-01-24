@@ -3,24 +3,11 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-// db.useEmulator("localhost", 8080);
-
-// db.collection("cities").doc("LA").set({
-//     name: "Los Angeles",
-//     state: "CA",
-//     country: "USA"
-// })
-// .then(function() {
-//     console.log("Document successfully written!");
-// })
-// .catch(function(error) {
-//     console.error("Error writing document: ", error);
-// });
 
 // store the json as string and reconstruct pdf when user wants to download
 function sendToFirestore(data) {
-    // var user_email = document.getElementById('user_email').innerText;
-    var user_email="pragi.nyu@gmail.com"
+    var user_email = document.getElementById('user_email').innerText;
+
     db.collection('data').add({
         mail: user_email,
         data: data,
@@ -35,8 +22,8 @@ function sendToFirestore(data) {
 }
 
 function retrieveUserItemsData() {
-    // var user_email = firebase.auth().currentUser.email;
-    var user_email = "pragi.nyu@gmail.com"
+    var user_email = firebase.auth().currentUser.email;
+
     db.collection("items").doc(user_email)
     .get()
     .then(function(doc) {

@@ -126,7 +126,7 @@ function uploadImage() {
 }
 
 /**************************************************************************************************
- * Methods to generate json from the document
+ * Mathods to generate json from the document
  **************************************************************************************************/
 
 // function to iterate and store purchases data as json
@@ -238,7 +238,7 @@ function previewInvoice() {
 
 function downloadInvoice() {
     var data =  getInvoiceData();
-    generatePDF(data, true, false);
+    generatePDF(data, true, true);
 }
 
 /**************************************************************************************************

@@ -3,14 +3,12 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-// db.useEmulator("localhost", 8080);
 
 var clientUID = 0;
 
 // retrieve data from Firebase based on user's mail
 function retrieveUsersFromFirestore() {
-    // var user_email = firebase.auth().currentUser.email;
-    var user_email="pragi.nyu@gmail.com"
+    var user_email = firebase.auth().currentUser.email;
     db.collection("clients").doc(user_email)
     .get()
     .then(function(doc) {

@@ -3,7 +3,6 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-// db.useEmulator("localhost", 8080);
 
 function getPaymentStatus(balance, doc_id) {
     let status_content = "<b style='color: green;'>PAID IN FULL </b>";
@@ -18,8 +17,7 @@ function getPaymentStatus(balance, doc_id) {
 
 // retrieve data from Firebase based on user's mail
 function retrieveFromFirestore() {
-    // var user_email = firebase.auth().currentUser.email;
-    var user_email="pragi.nyu@gmail.com"
+    var user_email = firebase.auth().currentUser.email;
     db.collection("data").where("mail", "==", user_email)
     .get()
     .then(function(querySnapshot) {

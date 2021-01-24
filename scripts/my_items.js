@@ -3,25 +3,12 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-// db.useEmulator("localhost", 8080);
-var itemUID = 0;
 
-db.collection("cities").doc("LA").set({
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
+var itemUID = 0;
 
 // retrieve data from Firebase based on user's mail
 function retrieveItemsFromFirestore() {
-    // var user_email = firebase.auth().currentUser.email;
-    var user_email="pragi.nyu@gmail.com"
+    var user_email = firebase.auth().currentUser.email;
     db.collection("items").doc(user_email)
     .get()
     .then(function(doc) {
