@@ -123,25 +123,25 @@
             var instances = M.Sidenav.init(elems, {});
         });
 
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //     if (user) {
-        //         retrieveFromFirestore();
-        //         if (user.photoURL) {
-        //             document.getElementById("user_image").src = user.photoURL;
-        //         }
-        //         document.getElementById("user_name").innerText = user.displayName;
-        //         document.getElementById("user_email").innerText = user.email;
-        //     } else {
-        //         window.location = "../index.html";
-        //     }
-        // });
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                retrieveFromFirestore();
+                if (user.photoURL) {
+                    document.getElementById("user_image").src = user.photoURL;
+                }
+                document.getElementById("user_name").innerText = user.displayName;
+                document.getElementById("user_email").innerText = user.email;
+            } else {
+                window.location = "../index.html";
+            }
+        });
 
-        // function logOutUser() {
-        //     firebase.auth().signOut().then(function() {
-        //         document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://cherub7.github.io/Invoice-generator/"
-        //     }).catch(function(error) {
-        //         console.log(error);
-        //     });
-        // }
+        function logOutUser() {
+            firebase.auth().signOut().then(function() {
+                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://cherub7.github.io/Invoice-generator/"
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
     </script>
 </html>

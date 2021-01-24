@@ -12,10 +12,8 @@
         <!-- TODO: Add SDKs for Firebase products that you want to use
              https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
-        <!-- <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script> -->
-        <script src="/__/firebase/8.2.3/firebase-auth.js"></script>
-        <script src="/__/firebase/8.2.3/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
 
         <script>
           // Your web app's Firebase configuration
@@ -132,25 +130,25 @@
             var instances = M.Sidenav.init(elems, {});
         });
 
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //     if (user) {
-        //         retrieveItemsFromFirestore();
-        //         if (user.photoURL) {
-        //             document.getElementById("user_image").src = user.photoURL;
-        //         }
-        //         document.getElementById("user_name").innerText = user.displayName;
-        //         document.getElementById("user_email").innerText = user.email;
-        //     } else {
-        //         window.location = "../index.html";
-        //     }
-        // });
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                retrieveItemsFromFirestore();
+                if (user.photoURL) {
+                    document.getElementById("user_image").src = user.photoURL;
+                }
+                document.getElementById("user_name").innerText = user.displayName;
+                document.getElementById("user_email").innerText = user.email;
+            } else {
+                window.location = "../index.html";
+            }
+        });
 
-        // function logOutUser() {
-        //     firebase.auth().signOut().then(function() {
-        //         document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://cherub7.github.io/Invoice-generator/"
-        //     }).catch(function(error) {
-        //         console.log(error);
-        //     });
-        // }
+        function logOutUser() {
+            firebase.auth().signOut().then(function() {
+                document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://cherub7.github.io/Invoice-generator/"
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
     </script>
 </html>

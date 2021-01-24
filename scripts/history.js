@@ -3,7 +3,7 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-db.useEmulator("localhost", 8080);
+// db.useEmulator("localhost", 8080);
 
 function getPaymentStatus(balance, doc_id) {
     let status_content = "<b style='color: green;'>PAID IN FULL </b>";

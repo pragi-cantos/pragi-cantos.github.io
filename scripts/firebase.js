@@ -3,19 +3,19 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-db.useEmulator("localhost", 8080);
+// db.useEmulator("localhost", 8080);
 
-db.collection("cities").doc("LA").set({
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
+// db.collection("cities").doc("LA").set({
+//     name: "Los Angeles",
+//     state: "CA",
+//     country: "USA"
+// })
+// .then(function() {
+//     console.log("Document successfully written!");
+// })
+// .catch(function(error) {
+//     console.error("Error writing document: ", error);
+// });
 
 // store the json as string and reconstruct pdf when user wants to download
 function sendToFirestore(data) {

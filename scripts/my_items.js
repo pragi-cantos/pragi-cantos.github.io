@@ -3,7 +3,7 @@
  **************************************************************************************************/
 
 var db = firebase.firestore();
-db.useEmulator("localhost", 8080);
+// db.useEmulator("localhost", 8080);
 var itemUID = 0;
 
 db.collection("cities").doc("LA").set({
