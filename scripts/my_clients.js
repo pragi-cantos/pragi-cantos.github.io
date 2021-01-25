@@ -50,6 +50,11 @@ function removeClient(clientId) {
     element.parentNode.removeChild(element);
 }
 
+function showTable() {
+    var element = getClientsData();
+    alert(element);
+}
+
 function addNewClient() {
     var clientId = 'client-' + clientUID;
     clientUID++;
