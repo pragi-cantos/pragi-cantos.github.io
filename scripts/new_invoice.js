@@ -35,7 +35,7 @@ function addNewItem(item) {
 
 // function to autocomplete client details
 function fillClientDetails(client) {
-    var keys = ['client_name', 'client_tel', 'client_place'];
+    var keys = ['client_name', 'client_tel', 'client_place', 'client_bill'];
 
     for (var i = 0; i < keys.length; i++)
         document.getElementById(keys[i]).value = client[keys[i]];
@@ -205,7 +205,7 @@ function getInvoiceData() {
     var data = {};
 
     var data_keys = ['company_name', 'company_email', 'company_addr', 'company_web', 'company_tel',
-                     'client_name', 'client_tel', 'client_place', 'invoice_date', 'invoice_msg', 'invoice_paid_amount'];
+                     'client_name', 'client_tel', 'client_place', 'client_bill','invoice_date', 'invoice_msg', 'invoice_paid_amount'];
 
     for (var i = 0; i < data_keys.length; i++) {
         data[data_keys[i]] = document.getElementById(data_keys[i]).value;
