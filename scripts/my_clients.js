@@ -57,7 +57,7 @@ function addNewClient() {
     var client_name = "<td><input type='text' placeholder='Client Name'></td>";
     var client_number = "<td><input type='text' placeholder='Client Number'></td>";
     var client_place = "<td><input type='text' placeholder='Shipping Address'></td>";
-    ar client_bill = "<td><input type='text' placeholder='Billing Address'></td>";
+    var client_bill = "<td><input type='text' placeholder='Billing Address'></td>";
     var actions = '<td><a class="btn-floating btn-medium waves-effect waves-light black" onclick="javascript:removeClient(\'' + 
     clientId + '\'); return false;"><i class="material-icons left">delete</i></td>';
 
