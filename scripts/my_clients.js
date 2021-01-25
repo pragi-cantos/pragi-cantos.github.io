@@ -57,11 +57,11 @@ function addNewClient() {
     var client_name = "<td><input type='text' placeholder='Client Name'></td>";
     var client_number = "<td><input type='text' placeholder='Client Number'></td>";
     var client_place = "<td><input type='text' placeholder='Shipping Address'></td>";
-    var client_bill = "<td><input type='text' placeholder='Billing Address'></td>";
+    //var client_bill = "<td><input type='text' placeholder='Billing Address'></td>";
     var actions = '<td><a class="btn-floating btn-medium waves-effect waves-light black" onclick="javascript:removeClient(\'' + 
     clientId + '\'); return false;"><i class="material-icons left">delete</i></td>';
 
-    var entry_data = client_name + client_number + client_place + client_bill + actions;
+    var entry_data = client_name + client_number + client_place + actions;
 
     var client_entry = document.createElement("tr");
     client_entry.id = clientId;
@@ -77,11 +77,11 @@ function addClient(client) {
     var client_name = "<td><input type='text' value='" + client['client_name'] + "'></td>";
     var client_number = "<td><input type='text' value='" + client['client_tel'] + "'></td>";
     var client_place = "<td><input type='text' value='" + client['client_place'] + "'></td>";
-    var client_bill = "<td><input type='text' value='" + client['client_bill'] + "'></td>";
+    //var client_bill = "<td><input type='text' value='" + client['client_bill'] + "'></td>";
     var actions = '<td><a class="btn-floating btn-medium waves-effect waves-light black" onclick="javascript:removeClient(\'' + 
     clientId + '\'); return false;"><i class="material-icons left">delete</i></td>';
 
-    var entry_data = client_name + client_number + client_place + client_bill + actions;
+    var entry_data = client_name + client_number + client_place + actions;
 
     var client_entry = document.createElement("tr");
     client_entry.id = clientId;
@@ -103,7 +103,7 @@ function getClientsData() {
         client.client_name = clients_div.children[i].children[0].children[0].value;
         client.client_tel = clients_div.children[i].children[1].children[0].value;
         client.client_place = clients_div.children[i].children[2].children[0].value;
-        client.client_bill = lients_div.children[i].children[3].children[0].value;
+        //client.client_bill = lients_div.children[i].children[3].children[0].value;
 
         clients.push(client);
     }
