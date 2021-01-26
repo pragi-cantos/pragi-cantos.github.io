@@ -52,7 +52,7 @@ function removeClient(clientId) {
 
 function showTable() {
     // var element1 = getClientsData();
-    window.alert("bla bla");
+    alert("bla bla");
 }
 
 function addNewClient() {
