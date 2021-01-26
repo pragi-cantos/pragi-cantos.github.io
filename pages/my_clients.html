@@ -112,19 +112,13 @@
                         <a class="btn-floating btn-large waves-effect waves-light black" onclick="addNewClient()"><i class="material-icons">add</i></a>
                     </div>
                     <div class="col s6">
-                        <a class="btn-floating btn-large waves-effect waves-light black" onclick="geekAlert()"><i class="material-icons">backup</i></a>
+                        <a class="btn-floating btn-large waves-effect waves-light black" onclick="showTable()"><i class="material-icons">backup</i></a>
                     </div>
                 </div>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        var cells=document.getElementsbyTagName("user_clients");
-        for(i=0;i<cells.length;i++){
-            cells[i].onclick=function(){alert(this.innerHTML);};
-        }
-    </script>
 
     <script src="../scripts/my_clients.js"></script>
     <script src="../external-scripts/materialize.min.js"></script>
