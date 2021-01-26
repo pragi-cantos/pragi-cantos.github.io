@@ -50,27 +50,27 @@ function removeClient(clientId) {
     element.parentNode.removeChild(element);
 }
 
-function showTable() {
-    var data = {};
+// function showTable() {
+//     var data = {};
 
-    var clients_div = document.getElementById('user_clients');
-    var clients = [];
+//     var clients_div = document.getElementById('user_clients');
+//     var clients = [];
 
-    for (var i = 0; i < clients_div.children.length; i++) {
-        var client = new Object();
+//     for (var i = 0; i < clients_div.children.length; i++) {
+//         var client = new Object();
 
-        // clients div -> tr -> td -> input element
-        client.client_name = clients_div.children[i].children[0].children[0].value;
-        client.client_tel = clients_div.children[i].children[1].children[0].value;
-        client.client_place = clients_div.children[i].children[2].children[0].value;
-        client.client_bill = lients_div.children[i].children[3].children[0].value;
+//         // clients div -> tr -> td -> input element
+//         client.client_name = clients_div.children[i].children[0].children[0].value;
+//         client.client_tel = clients_div.children[i].children[1].children[0].value;
+//         client.client_place = clients_div.children[i].children[2].children[0].value;
+//         client.client_bill = lients_div.children[i].children[3].children[0].value;
 
-        clients.push(client);
-    }
+//         clients.push(client);
+//     }
 
-    data['clients'] = clients;
-    alert(JSON.stringify(data));
-}
+//     data['clients'] = clients;
+//     alert(JSON.stringify(data));
+// }
 
 function addNewClient() {
     var clientId = 'client-' + clientUID;
@@ -103,7 +103,7 @@ function addClient(client) {
     var actions = '<td><a class="btn-floating btn-medium waves-effect waves-light black" onclick="javascript:removeClient(\'' + 
     clientId + '\'); return false;"><i class="material-icons left">delete</i></td>';
 
-    var entry_data = client_name + client_number + client_place  + actions;
+    var entry_data = client_name + client_number + client_place  + client_bill + actions;
 
     var client_entry = document.createElement("tr");
     client_entry.id = clientId;
