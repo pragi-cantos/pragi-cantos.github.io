@@ -93,6 +93,7 @@ function generateInvoice(doc, data) {
     client_name = data['client_name'];
     client_tel = data['client_tel'];
     client_place = data['client_place'];
+    client_bill = data['client_bill'];
     invoice_date = data['invoice_date'];
     invoice_msg = data['invoice_msg'];
 
@@ -113,7 +114,12 @@ function generateInvoice(doc, data) {
 
     if (client_place) {
         y_pos += 5;
-        doc.text(15, y_pos, 'Place: ' + client_place);
+        doc.text(15, y_pos, 'Shipping Address: ' + client_place);
+    }
+
+    if (client_bill) {
+        y_pos += 5;
+        doc.text(15, y_pos, 'Billing Address: ' + client_place);
     }
 
     doc.text(15, y_pos + 10, '     ' + invoice_msg);
@@ -161,7 +167,7 @@ function generatePurchaseList(doc, data) {
     }
 
     doc.autoTable({
-        startY: 120,
+        startY: 110,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
