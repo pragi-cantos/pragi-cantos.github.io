@@ -52,8 +52,8 @@ function removeClient(clientId) {
 
 function showTable() {
     var element1 = getClientsData();
-    window.alert(element1);
-    // popup.classList.toggle(element1);
+    //window.alert(element1);
+    popup.classList.toggle(element1);
 }
 
 function addNewClient() {
