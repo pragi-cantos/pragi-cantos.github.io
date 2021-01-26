@@ -125,7 +125,7 @@ function getClientsData() {
         client.client_name = clients_div.children[i].children[0].children[0].value;
         client.client_tel = clients_div.children[i].children[1].children[0].value;
         client.client_place = clients_div.children[i].children[2].children[0].value;
-        //client.client_bill = lients_div.children[i].children[3].children[0].value;
+        client.client_bill = clients_div.children[i].children[3].children[0].value;
 
         clients.push(client);
     }
