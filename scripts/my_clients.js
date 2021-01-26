@@ -83,7 +83,7 @@ function addNewClient() {
     var actions = '<td><a class="btn-floating btn-medium waves-effect waves-light black" onclick="javascript:removeClient(\'' + 
     clientId + '\'); return false;"><i class="material-icons left">delete</i></td>';
 
-    var entry_data = client_name + client_number + client_place  + actions;
+    var entry_data = client_name + client_number + client_place + client_bill  + actions;
 
     var client_entry = document.createElement("tr");
     client_entry.id = clientId;
