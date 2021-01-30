@@ -187,12 +187,12 @@ function generatePurchaseList(doc, data, totalPagesExp, website) {
         startY: 110,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
-        didDrawPage: function (data) {
-            var str = "Page " + doc.internal.getNumberOfPages()
-        // Total page number plugin only available in jspdf v1.0+
-        if (typeof doc.putTotalPages === 'function') {
-            str = str + " of " + totalPagesExp;
-        }
+        // didDrawPage: function (data) {
+        //     var str = "Page " + doc.internal.getNumberOfPages()
+        // // Total page number plugin only available in jspdf v1.0+
+        // if (typeof doc.putTotalPages === 'function') {
+        //     str = str + " of " + totalPagesExp;
+        // }
         doc.setFontSize(10);
 
         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
@@ -204,7 +204,7 @@ function generatePurchaseList(doc, data, totalPagesExp, website) {
     },
     margin: {top: 30}
     });
-    if (typeof doc.putTotalPages === 'function') {
-    doc.putTotalPages(totalPagesExp);
-    }
+    // if (typeof doc.putTotalPages === 'function') {
+    // doc.putTotalPages(totalPagesExp);
+    // }
 }
