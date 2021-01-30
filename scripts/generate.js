@@ -141,7 +141,12 @@ function financial(x) {
     return Number.parseFloat(x).toFixed(2);
 }
 
-var pageContent = function (data) {
+
+
+// function to generate the purchases table in the invoice
+function generatePurchaseList(doc, data) {
+    var purchase_list = data['purchase_list']['items'];
+    var pageContent = function (data) {
         // HEADER
         doc.setFontSize(10);
         // doc.setTextColor(40);
@@ -160,11 +165,6 @@ var pageContent = function (data) {
         doc.setFontSize(10);
         doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
     };
-
-// function to generate the purchases table in the invoice
-function generatePurchaseList(doc, data) {
-    var purchase_list = data['purchase_list']['items'];
-
     if (purchase_list.length == 1) {
         return;
     }
