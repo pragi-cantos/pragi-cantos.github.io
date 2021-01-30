@@ -199,9 +199,9 @@ function generatePurchaseList(doc, data, totalPagesExp, website) {
         var pageSize = doc.internal.pageSize;
         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
         // doc.text(data.settings.margin.left, pageHeight - 10, str);
-        doc.text('Developed by Cantos Inc.                    https://wpcantos.wixsite.com/cantos', 76, pageHeight-10);
-        doc.text(data.settings.margin.left, pageHeight-10, website);
-        //doc.textWithLink(data.settings.margin.left, pageHeight - 10, website, website);
+        doc.text('Developed by Cantos Inc.', 150, pageHeight-10);
+        // doc.text(data.settings.margin.left, pageHeight-10, website);
+        // doc.textWithLink(data.settings.margin.left, pageHeight - 10, website, website);
     },
     margin: {top: 30}
     });
