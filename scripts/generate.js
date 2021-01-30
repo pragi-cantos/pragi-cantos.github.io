@@ -14,7 +14,8 @@ function generatePDF(data, save_to_cloud, save_to_device) {
     }
 
     if (save_to_device) {
-        doc.save('generated_invoice.pdf');
+        // doc.save('generated_invoice.pdf');
+        saveAs(new Blob([doc.output('blob')], {type: 'application/pdf'}));
     }
     else {
         var blobpdf = new Blob([doc.output('blob')], {type: 'application/pdf'});
