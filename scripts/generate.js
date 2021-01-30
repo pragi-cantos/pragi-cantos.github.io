@@ -178,6 +178,6 @@ function generatePurchaseList(doc, data) {
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
     });
-    doc.setFontSize(10);// optional
-    doc.text(50, doc.internal.pageSize.height - 10, 'Follow us on '+cantos_link);
+    // doc.setFontSize(10);// optional
+    // doc.text(50, doc.internal.pageSize.height - 10, 'Follow us on '+cantos_link);
 }
