@@ -17,7 +17,7 @@ function generatePDF(data, save_to_device, save_to_cloud) {
         doc.save('generated_invoice.pdf');
     }
     else {
-        window.open(doc.output('bloburl'));
+        window.open(doc.output('dataurlnewwindow'));
     }
 }
 
