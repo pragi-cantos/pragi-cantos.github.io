@@ -17,7 +17,11 @@ function generatePDF(data, save_to_device, save_to_cloud) {
         doc.save('generated_invoice.pdf');
     }
     else {
-        window.open(doc.output('dataurlnewwindow'));
+        var pdfData = doc.output('datauristring');
+        var element = document.getElementById('pdfData');
+        element.href = "app/views/pdf.html#" + pdfData;
+        element.target = "xxx";
+        $scope.pdfReady = true;
     }
 }
 
