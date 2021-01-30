@@ -8,7 +8,7 @@ function generatePDF(data, save_to_cloud, save_to_device) {
     var totalPagesExp = '{total_pages_count_string}';
     var cantos_link = 'cantos.com'
     generateHeader(doc, data);
-    generateInvoice(doc, data);
+    generateInvoice(doc, data, totalPagesExp);
 
     if (save_to_cloud) {
         sendToFirestore(JSON.stringify(data));
@@ -87,7 +87,7 @@ function generateHeader(doc, data) {
 }
 
 // function to generate lower part of the invoice
-function generateInvoice(doc, data) {
+function generateInvoice(doc, data, totalPagesExp) {
     doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(65, 160, 240);
@@ -132,7 +132,7 @@ function generateInvoice(doc, data) {
 
     // doc.setFontSize(10);// optional
 
-    generatePurchaseList(doc, data);
+    generatePurchaseList(doc, data, totalPagesExp);
 }
 
 function financial(x) {
@@ -140,7 +140,7 @@ function financial(x) {
 }
 
 // function to generate the purchases table in the invoice
-function generatePurchaseList(doc, data) {
+function generatePurchaseList(doc, data, totalPagesExp) {
     var purchase_list = data['purchase_list']['items'];
 
     if (purchase_list.length == 1) {
