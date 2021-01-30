@@ -5,10 +5,11 @@
 // driver function for creating the invoice pdf from a json object
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
+    var website = ''
     var totalPagesExp = '{total_pages_count_string}';
     var cantos_link = 'cantos.com'
-    generateHeader(doc, data);
-    generateInvoice(doc, data, totalPagesExp);
+    generateHeader(doc, data, website);
+    generateInvoice(doc, data, totalPagesExp, website);
 
     if (save_to_cloud) {
         sendToFirestore(JSON.stringify(data));
@@ -28,7 +29,7 @@ function generatePDF(data, save_to_cloud, save_to_device) {
 }
 
 // function to generate header part of the invoice
-function generateHeader(doc, data) {
+function generateHeader(doc, data, website) {
     var company_name = data['company_name'];
     var company_email = data['company_email'];
     var company_addr = data['company_addr'];
@@ -74,6 +75,7 @@ function generateHeader(doc, data) {
     if (company_web) { 
         y_pos += 6;
         doc.text(x_pos, y_pos, company_web);
+        website=company_web;
     }
     
     if (company_tel) { 
@@ -87,7 +89,7 @@ function generateHeader(doc, data) {
 }
 
 // function to generate lower part of the invoice
-function generateInvoice(doc, data, totalPagesExp) {
+function generateInvoice(doc, data, totalPagesExp ,website) {
     doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(65, 160, 240);
@@ -132,7 +134,7 @@ function generateInvoice(doc, data, totalPagesExp) {
 
     // doc.setFontSize(10);// optional
 
-    generatePurchaseList(doc, data, totalPagesExp);
+    generatePurchaseList(doc, data, totalPagesExp, website);
 }
 
 function financial(x) {
@@ -140,7 +142,7 @@ function financial(x) {
 }
 
 // function to generate the purchases table in the invoice
-function generatePurchaseList(doc, data, totalPagesExp) {
+function generatePurchaseList(doc, data, totalPagesExp, website) {
     var purchase_list = data['purchase_list']['items'];
 
 
@@ -196,8 +198,9 @@ function generatePurchaseList(doc, data, totalPagesExp) {
         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
         var pageSize = doc.internal.pageSize;
         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
-        doc.text(data.settings.margin.left, pageHeight - 10, str);
-        doc.text(50, pageHeight - 10, 'Follow us on'+cantos_link);
+        // doc.text(data.settings.margin.left, pageHeight - 10, str);
+        doc.textWithLink(180, pageHeight-10,'Developed by Cantos Inc', { url: 'https://wpcantos.wixsite.com/cantos'});
+        doc.textWithLink(data.settings.margin.left, pageHeight - 10, website, {url: website});
     },
     margin: {top: 30}
     });
