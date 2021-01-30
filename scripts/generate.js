@@ -189,7 +189,7 @@ function generatePurchaseList(doc, data) {
         // jsPDF 1.4+ uses getWidth, <1.4 uses .width
         var pageSize = doc.internal.pageSize;
         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
-        doc.text(str, data.settings.margin.left, pageHeight - 10);
+        doc.text(data.settings.margin.left, pageHeight - 10, str);
     },
     margin: {top: 30}
     });
