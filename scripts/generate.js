@@ -5,7 +5,7 @@
 // driver function for creating the invoice pdf from a json object
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
-
+    var totalPagesExp = '{total_pages_count_string}';
     generateHeader(doc, data);
     generateInvoice(doc, data);
 
@@ -176,5 +176,24 @@ function generatePurchaseList(doc, data) {
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
+        didDrawPage: function(data){
+            var str = 'Page ' + doc.internal.getNumberOfPages()
+      /// Footer
+            var str = 'Page ' + doc.internal.getNumberOfPages()
+          // Total page number plugin only available in jspdf v1.0+
+            if (typeof doc.putTotalPages === 'function') {
+                str = str + ' of ' + totalPagesExp
+            }
+            doc.setFontSize(10)
+
+          // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+            var pageSize = doc.internal.pageSize
+            var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+            doc.text(str, data.settings.margin.left, pageHeight - 10)
+        },
+        margin: { top: 30 },
     });
+    if (typeof doc.putTotalPages === 'function') {
+    doc.putTotalPages(totalPagesExp)
+    };
 }
