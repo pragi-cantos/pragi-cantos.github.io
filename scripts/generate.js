@@ -17,11 +17,11 @@ function generatePDF(data, save_to_device, save_to_cloud) {
         doc.save('generated_invoice.pdf');
     }
     else {
-        var pdfData = doc.output('datauristring');
-        var element = document.getElementById('pdfData');
-        element.href = "app/views/pdf.html#" + pdfData;
-        element.target = "xxx";
-        $scope.pdfReady = true;
+        var blobpdf = new Blob([doc.output('blobpdf')], {type: 'application/pdf'});
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blobpdf);
+        window.open(link);
+
     }
 }
 
