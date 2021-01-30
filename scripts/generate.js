@@ -6,7 +6,11 @@
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
     var totalPagesExp = '{total_pages_count_string}';
+
+
     var cantos_link = 'cantos.com'
+
+
     generateHeader(doc, data);
     generateInvoice(doc, data);
 
@@ -137,6 +141,26 @@ function financial(x) {
     return Number.parseFloat(x).toFixed(2);
 }
 
+var pageContent = function (data) {
+        // HEADER
+        doc.setFontSize(10);
+        // doc.setTextColor(40);
+        doc.setFontStyle('normal');
+        if (base64Img) {
+            doc.addImage(base64Img, 'JPEG', data.settings.margin.left, 15, 10, 10);
+        }   
+        doc.text("Report", data.settings.margin.left + 15, 22);
+
+        // FOOTER
+        var str = "Page " + data.pageCount;
+        // Total page number plugin only available in jspdf v1.0+
+        if (typeof doc.putTotalPages === 'function') {
+            str = str + " of " + totalPagesExp;
+        }
+        doc.setFontSize(10);
+        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
+    };
+
 // function to generate the purchases table in the invoice
 function generatePurchaseList(doc, data) {
     var purchase_list = data['purchase_list']['items'];
@@ -178,7 +202,11 @@ function generatePurchaseList(doc, data) {
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
     });
-    
-    doc.setFontSize(10);// optional
-    doc.text(50, 285, 'Follow us on '+cantos_link);
+
+    if (typeof doc.putTotalPages === 'function') {
+        doc.putTotalPages(totalPagesExp);
+    }
+
+    // doc.setFontSize(10);// optional
+    // doc.text(50, 285, 'Follow us on '+cantos_link);
 }
