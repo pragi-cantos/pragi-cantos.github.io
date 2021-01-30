@@ -17,7 +17,7 @@ function generatePDF(data, save_to_device, save_to_cloud) {
         doc.save('generated_invoice.pdf');
     }
     else {
-        var blobpdf = new Blob([doc.output('blobpdf')], {type: 'application/pdf'});
+        var blobpdf = new Blob([doc.output('blob')], {type: 'application/pdf'});
         var link = document.createElement('a');
         link.href = URL.createObjectURL(blobpdf);
         window.open(link);
