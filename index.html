@@ -14,6 +14,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-firestore.js"></script>
+        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
         <script>
@@ -61,7 +62,7 @@
                 </div>
             </div>
         </div>
-
+        <div id="google_translate_element"></div>
     </body>
 
     <script>
@@ -88,6 +89,10 @@
             }
         });
     </script>
-
+    <script>
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
     <script src="./external-scripts/materialize.min.js"></script>
 </html>
