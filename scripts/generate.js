@@ -186,7 +186,7 @@ function generatePurchaseList(doc, data, totalPagesExp) {
             var str = "Page " + doc.internal.getNumberOfPages()
         // Total page number plugin only available in jspdf v1.0+
         if (typeof doc.putTotalPages === 'function') {
-            str = str + " of " + totalPagesExp;
+            str = str + " of " + totalPagesExp + "                                 " + "Follow us on " + cantos_link;
         }
         doc.setFontSize(10);
 
@@ -194,7 +194,7 @@ function generatePurchaseList(doc, data, totalPagesExp) {
         var pageSize = doc.internal.pageSize;
         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
         doc.text(data.settings.margin.left, pageHeight - 10, str);
-        doc.text(50, pageHeight - 10, 'Follow us on'+cantos_link);
+        // doc.text(50, pageHeight - 10, 'Follow us on'+cantos_link);
     },
     margin: {top: 30}
     });
