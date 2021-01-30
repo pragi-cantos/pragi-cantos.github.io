@@ -6,11 +6,7 @@
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
     var totalPagesExp = '{total_pages_count_string}';
-
-
     var cantos_link = 'cantos.com'
-
-
     generateHeader(doc, data);
     generateInvoice(doc, data);
 
@@ -134,6 +130,8 @@ function generateInvoice(doc, data) {
 
     doc.text(15, y_pos + 10, '     ' + invoice_msg);
 
+    // doc.setFontSize(10);// optional
+
     generatePurchaseList(doc, data);
 }
 
@@ -141,30 +139,10 @@ function financial(x) {
     return Number.parseFloat(x).toFixed(2);
 }
 
-
-
 // function to generate the purchases table in the invoice
 function generatePurchaseList(doc, data) {
     var purchase_list = data['purchase_list']['items'];
-    var pageContent = function (data) {
-        // HEADER
-        doc.setFontSize(10);
-        // doc.setTextColor(40);
-        doc.setFontStyle('normal');
-        if (base64Img) {
-            doc.addImage(base64Img, 'JPEG', data.settings.margin.left, 15, 10, 10);
-        }   
-        doc.text("Report", data.settings.margin.left + 15, 22);
 
-        // FOOTER
-        var str = "Page " + data.pageCount;
-        // Total page number plugin only available in jspdf v1.0+
-        if (typeof doc.putTotalPages === 'function') {
-            str = str + " of " + totalPagesExp;
-        }
-        doc.setFontSize(10);
-        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
-    };
     if (purchase_list.length == 1) {
         return;
     }
@@ -200,13 +178,22 @@ function generatePurchaseList(doc, data) {
         startY: 110,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
-        body: items
+        didDrawPage: function (data) {
+            var str = "Page " + doc.internal.getNumberOfPages()
+        // Total page number plugin only available in jspdf v1.0+
+        if (typeof doc.putTotalPages === 'function') {
+            str = str + " of " + totalPagesExp;
+        }
+        doc.setFontSize(10);
+
+        // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+        var pageSize = doc.internal.pageSize;
+        var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
+        doc.text(str, data.settings.margin.left, pageHeight - 10);
+    },
+    margin: {top: 30}
     });
-
     if (typeof doc.putTotalPages === 'function') {
-        doc.putTotalPages(totalPagesExp);
+    doc.putTotalPages(totalPagesExp);
     }
-
-    // doc.setFontSize(10);// optional
-    // doc.text(50, 285, 'Follow us on '+cantos_link);
 }
