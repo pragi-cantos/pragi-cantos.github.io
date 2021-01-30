@@ -14,13 +14,6 @@ function generatePDF(data, save_to_cloud, save_to_device) {
     }
 
     if (save_to_device) {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-            var blobpdf = new Blob([doc.output('blob')], {type: 'application/pdf'});
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blobpdf);
-            window.open(link);
-        }
-        else:
         doc.save('generated_invoice.pdf');
         // saveAs(new Blob([doc.output('blob')], {type: 'application/pdf'}));
     }
