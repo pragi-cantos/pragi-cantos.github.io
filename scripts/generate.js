@@ -1,10 +1,12 @@
 /**************************************************************************************************
  * Methods to generate the invoice pdf
  **************************************************************************************************/
-
+src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.0/jspdf.umd.min.js"
+src="https://unpkg.com/jspdf-autotable@3.5.13/dist/jspdf.plugin.autotable.js"
 // driver function for creating the invoice pdf from a json object
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
+    var totalPagesExp = '{total_pages_count_string}'
 
     generateHeader(doc, data);
     generateInvoice(doc, data);
@@ -53,7 +55,7 @@ function generateHeader(doc, data) {
     doc.setTextColor(65, 160, 240);
 
     y_pos += 7;
-    doc.text(x_pos, y_pos, company_name);
+    doc.text( company_name, x_pos, y_pos);
     
     doc.setTextColor(0,0,0)
     doc.setFontSize(13);
@@ -62,22 +64,22 @@ function generateHeader(doc, data) {
     // add only entered details into pdf
     if (company_email) { 
         y_pos += 6;
-        doc.text(x_pos, y_pos, company_email);
+        doc.text(company_email, x_pos, y_pos);
     }
 
     if (company_addr) { 
         y_pos += 6;
-        doc.text(x_pos, y_pos, company_addr);
+        doc.text(company_addr, x_pos, y_pos);
     }
     
     if (company_web) { 
         y_pos += 6;
-        doc.text(x_pos, y_pos, company_web);
+        doc.text(company_web, x_pos, y_pos);
     }
     
     if (company_tel) { 
         y_pos += 6;
-        doc.text(x_pos, y_pos, company_tel);
+        doc.text(company_tel, x_pos, y_pos);
     }
 
     // line to mark the end of header
@@ -91,7 +93,7 @@ function generateInvoice(doc, data) {
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(65, 160, 240);
 
-    doc.text(85, 65, 'BILL RECEIPT')
+    doc.text( 'BILL RECEIPT', 85, 65)
     
     doc.setTextColor(0, 0, 0);
 
@@ -109,25 +111,25 @@ function generateInvoice(doc, data) {
 
     if (client_name) {
         y_pos += 5;
-        doc.text(15, y_pos, 'To    : ' + client_name);
+        doc.text( 'To    : ' + client_name, 15, y_pos);
     }
 
     if (invoice_date) {
         y_pos += 5;
-        doc.text(15, y_pos, 'Date : ' + invoice_date);
+        doc.text( 'Date : ' + invoice_date, 15, y_pos);
     }
 
     if (client_place) {
         y_pos += 5;
-        doc.text(15, y_pos, 'Shipping Address: ' + client_place);
+        doc.text('Shipping Address: ' + client_place, 15, y_pos);
     }
 
     if (client_bill) {
         y_pos += 5;
-        doc.text(15, y_pos, 'Billing Address: ' + client_place);
+        doc.text( 'Billing Address: ' + client_place, 15, y_pos);
     }
 
-    doc.text(15, y_pos + 10, '     ' + invoice_msg);
+    doc.text( '     ' + invoice_msg, 15, y_pos + 10);
 
     generatePurchaseList(doc, data);
 }
@@ -172,9 +174,27 @@ function generatePurchaseList(doc, data) {
     }
 
     doc.autoTable({
-        startY: 110,
+        //startY: 110,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
-    });
+        didDrawPage: function(data){
+            // Footer
+      var str = 'Page ' + doc.internal.getNumberOfPages()
+      // Total page number plugin only available in jspdf v1.0+
+      if (typeof doc.putTotalPages === 'function') {
+        str = str + ' of ' + totalPagesExp
+      }
+      doc.setFontSize(10)
+
+      // jsPDF 1.4+ uses getWidth, <1.4 uses .width
+      var pageSize = doc.internal.pageSize
+      var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight()
+      doc.text(str, data.settings.margin.left, pageHeight - 10)
+    },
+    margin: { top: 30 },
+        }
+    );
+    if (typeof doc.putTotalPages === 'function') {
+    doc.putTotalPages(totalPagesExp)
 }
