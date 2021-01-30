@@ -181,7 +181,7 @@ function downloadInvoice(doc_id) {
     docRef.get().then(function(doc) {
         if (doc.exists) {
             var data = JSON.parse(doc.data().data);
-            generatePDF(data, true, false);
+            generatePDF(data, false, true);
         } else {
             alert("No such document exists.");
         }

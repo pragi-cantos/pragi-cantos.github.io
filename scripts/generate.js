@@ -3,7 +3,7 @@
  **************************************************************************************************/
 
 // driver function for creating the invoice pdf from a json object
-function generatePDF(data, save_to_device, save_to_cloud) {
+function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
 
     generateHeader(doc, data);
