@@ -6,7 +6,11 @@
 function generatePDF(data, save_to_cloud, save_to_device) {
     var doc = new jsPDF();
     var totalPagesExp = '{total_pages_count_string}';
+
+
     var cantos_link = 'cantos.com'
+    
+
     generateHeader(doc, data);
     generateInvoice(doc, data, totalPagesExp);
 
@@ -190,6 +194,7 @@ function generatePurchaseList(doc, data, totalPagesExp) {
         var pageSize = doc.internal.pageSize;
         var pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
         doc.text(data.settings.margin.left, pageHeight - 10, str);
+        doc.text(50, pageHeight - 10, 'Follow us on'+cantos_link);
     },
     margin: {top: 30}
     });
