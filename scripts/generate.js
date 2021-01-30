@@ -130,6 +130,9 @@ function generateInvoice(doc, data) {
 
     doc.text(15, y_pos + 10, '     ' + invoice_msg);
 
+    doc.setFontSize(10);// optional
+    doc.text(50, 285, 'Follow us on '+cantos_link);
+
     generatePurchaseList(doc, data);
 }
 
@@ -178,6 +181,4 @@ function generatePurchaseList(doc, data) {
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
         body: items
     });
-    doc.setFontSize(10);// optional
-    doc.text(50, 285, 'Follow us on '+cantos_link);
 }
