@@ -187,6 +187,7 @@ function generatePurchaseList(doc, data, totalPagesExp, website) {
         startY: 110,
         halign: 'center',
         head: [[ "Name", "Qty", "Cost", "Tax %", "Discount %", "Total"]],
+        body: items
         didDrawPage: function (data) {
             var str = "Page " + doc.internal.getNumberOfPages()
         // Total page number plugin only available in jspdf v1.0+
